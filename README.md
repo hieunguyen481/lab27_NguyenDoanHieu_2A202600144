@@ -301,6 +301,11 @@ Token lacks `public_repo` scope, or repo is private and you only have `public_re
 
 **LLM stays overconfident on PR #2 and never escalates.**
 Temporarily raise `ESCALATE_THRESHOLD` in `common/schemas.py` to 0.70 to force the branch.
+For the submitted demo in this workspace, `ESCALATE_THRESHOLD` was set to `0.70`
+because the OpenAI model returned `65%` confidence for PR-Demo #2. This makes
+PR-Demo #2 route through `escalate -> synthesize -> commit` for demonstration.
+The original lab threshold is `0.58`; restore it after the demo if strict spec
+matching is required.
 
 **`audit_events` schema is stale after a code change.**
 The schema is created idempotently on first connection. To reset state completely, just delete the file:
